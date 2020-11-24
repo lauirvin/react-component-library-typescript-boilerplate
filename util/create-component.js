@@ -1,4 +1,5 @@
 require('colors');
+const { exec } = require('child_process');
 const fs = require('fs');
 const templates = require('./templates');
 
@@ -26,4 +27,9 @@ generatedTemplates.forEach((template) => {
   fs.writeFileSync(`${componentDirectory}/${componentName}${template.extension}`, template.content);
 });
 
-console.log(`Successfully created component under: ${componentDirectory.green}`);
+const stream = fs.createWriteStream('./src/index.ts', { flags: 'a' });
+stream.once('open', () => {
+  stream.write(`export * from './components/${componentName}/${componentName}';\r\n`);
+});
+
+exec('yarn lint', () => console.log(`Successfully created component under: ${componentDirectory.green}`));
