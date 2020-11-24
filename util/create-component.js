@@ -32,4 +32,4 @@ stream.once('open', () => {
   stream.write(`export * from './components/${componentName}/${componentName}';\r\n`);
 });
 
-// exec('yarn lint', () => console.log(`Successfully created component under: ${componentDirectory.green}`));
+exec('yarn lint', () => console.log(`Successfully created component under: ${componentDirectory.green}`));
