@@ -27,9 +27,18 @@ generatedTemplates.forEach((template) => {
   fs.writeFileSync(`${componentDirectory}/${componentName}${template.extension}`, template.content);
 });
 
-const stream = fs.createWriteStream('./src/index.ts', { flags: 'a' });
-stream.once('open', () => {
-  stream.write(`export * from './components/${componentName}/${componentName}';\r\n`);
-});
+const componentList = fs.readdirSync('./src/components').filter((item) => !/(^|\/)\.[^\/\.]/g.test(item));
 
-exec('yarn lint', () => console.log(`Successfully created component under: ${componentDirectory.green}`));
+const exportComponents = `
+${componentList.map((component) => `import ${component} from './components/${component}/${component}';`).join('\n')}
+
+export {${componentList.join(', ')}}
+`;
+
+fs.writeFile('./src/index.ts', exportComponents, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    exec('yarn lint', () => console.log(`Successfully created component under: ${componentDirectory.green}`));
+  }
+});
