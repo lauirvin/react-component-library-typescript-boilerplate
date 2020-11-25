@@ -12,7 +12,7 @@
     "dev": "rollup -c -w",
     "build": "rollup -c",
     "test": "jest",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --fix",
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "storybook:export": "build-storybook",
@@ -69,7 +69,7 @@
     "jest": "^24.9.0",
     "lint-staged": "^10.5.2",
     "node-sass": "^4.14.1",
-    "prettier": "^2.1.2",
+    "prettier": "2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rollup": "^1.27.4",
@@ -83,11 +83,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn build"
+      "pre-commit": "yarn lint && yarn build && yarn test && yarn prettier --write '*/**/*.{js,ts,tsx}'",
+      "pre-push": ""
     }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --fix"
   }
 }
