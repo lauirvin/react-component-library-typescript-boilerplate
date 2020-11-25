@@ -13,6 +13,7 @@
 
 1. Install [NodeJS](https://nodejs.org/en/)
 2. Install [yarn](https://classic.yarnpkg.com/en/)
+3. Install [Prettier ESLint VSCode Extension](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
 
 ## 🚀 Development
 
