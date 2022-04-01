@@ -19,21 +19,28 @@
 
 1. Locate the repository in terminal/bash
 2. Install dependencies - `yarn install` in the repository directory
-3. Run `yarn dev` in the repository directory
+3. Follow the instructions below in order 👇🏻
 
-### Import library locally
+### 📖 Storybook
 
-1. Run `yarn link` in the repository directory
-2. Run `yarn link "name-of-library"` in project that want to use this library (Set name of library in `package.json`)
+1.  Run `yarn storybook` in repository directory
+2.  Open browser and navigate to http://localhost:6006/
+
+### 🎨 Import library locally in a project with hot reload
+
+1. In the project that you want to use this library in, run the following in the root folder:
+
+```
+cd node_modules/react && yarn link && cd .. && cd react-dom && yarn link && cd ../..
+```
+
+2. Run `yarn link:react` in the root of the library directory
+3. Run `yarn link` in the root of the library directory
+4. In the project, run `yarn link "name-of-library"` in project that want to use this library)
 
 ```
 import { SampleComponent } from 'name-of-library'
 ```
-
-### Storybook
-
-1.  Run `yarn storybook` in repository directory
-2.  Open browser and navigate to http://localhost:6006/
 
 ### Testing
 

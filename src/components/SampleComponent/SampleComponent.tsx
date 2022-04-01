@@ -5,6 +5,7 @@ import './SampleComponent.scss';
 const SampleComponent: React.FC<SampleComponentProps> = ({ foo }) => (
   <div data-testid="SampleComponent" className="foo-bar">
     {foo}
+    asdf
   </div>
 );
 
