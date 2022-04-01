@@ -32,11 +32,16 @@ const componentIndexFile = exportComponentTemplate(componentName);
 fs.writeFileSync(`${componentDirectory}/index${componentIndexFile.extension}`, componentIndexFile.content);
 
 const componentList = fs.readdirSync('./src/components').filter((item) => !/(^|\/)\.[^\/\.]/g.test(item));
+const componentListTypes = componentList.map((component) => `${component}Props`);
+
+const exportList = [...componentList, componentListTypes];
 
 const exportComponents = `
-${componentList.map((component) => `import ${component} from './components/${component}';`).join('\n')}
+${componentList
+  .map((component) => `import { ${component}, ${component}Props } from './components/${component}';`)
+  .join('\n')}
 
-export {${componentList.join(', ')}}
+export {${exportList.join(', ')}}
 `;
 
 fs.writeFile('./src/index.ts', exportComponents, (err) => {

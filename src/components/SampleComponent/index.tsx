@@ -1,2 +1,2 @@
-export { default } from './SampleComponent';
+export { default as SampleComponent } from './SampleComponent';
 export * from './SampleComponent.types';
