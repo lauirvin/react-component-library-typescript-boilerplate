@@ -1,4 +1,4 @@
-import SampleComponent from './components/SampleComponent/SampleComponent';
-import SampleComponent2 from './components/SampleComponent2/SampleComponent2';
+import SampleComponent from './components/SampleComponent';
+import SampleComponent2 from './components/SampleComponent2';
 
 export { SampleComponent, SampleComponent2 };

@@ -2,6 +2,7 @@ require('colors');
 const { exec } = require('child_process');
 const fs = require('fs');
 const templates = require('./templates');
+const exportComponentTemplate = require('./templates/exportComponent');
 
 const componentName = process.argv[2];
 
@@ -27,10 +28,13 @@ generatedTemplates.forEach((template) => {
   fs.writeFileSync(`${componentDirectory}/${componentName}${template.extension}`, template.content);
 });
 
+const componentIndexFile = exportComponentTemplate(componentName);
+fs.writeFileSync(`${componentDirectory}/index${componentIndexFile.extension}`, componentIndexFile.content);
+
 const componentList = fs.readdirSync('./src/components').filter((item) => !/(^|\/)\.[^\/\.]/g.test(item));
 
 const exportComponents = `
-${componentList.map((component) => `import ${component} from './components/${component}/${component}';`).join('\n')}
+${componentList.map((component) => `import ${component} from './components/${component}';`).join('\n')}
 
 export {${componentList.join(', ')}}
 `;
