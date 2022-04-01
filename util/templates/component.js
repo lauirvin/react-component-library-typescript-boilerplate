@@ -1,15 +1,16 @@
 module.exports = (componentName) => ({
   content: `
-import React from "react";
+import React, { memo } from 'react';
 import { ${componentName}Props } from "./${componentName}.types";
-import "./${componentName}.scss";
+import styles from './${componentName}.module.scss';
 
-const ${componentName}: React.FC<${componentName}Props> = ({ foo }) => (
-    <div data-testid="${componentName}" className="foo-bar">{foo}</div>
-);
+export const ${componentName} = memo<${componentName}Props>(({ foo }) => (
+  <div data-testid="${componentName}" className={styles.container}>{foo}</div>
+));
+
+${componentName}.displayName = '${componentName}';
 
 export default ${componentName};
-
 `,
   extension: `.tsx`,
 });

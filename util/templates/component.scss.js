@@ -1,4 +1,8 @@
 module.exports = () => ({
-  content: ``,
-  extension: `.scss`,
+  content: `
+  .container {
+    display: flex;
+  }
+  `,
+  extension: `.module.scss`,
 });

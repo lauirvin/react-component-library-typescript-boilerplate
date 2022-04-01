@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { SampleComponentProps } from './SampleComponent.types';
-import './SampleComponent.scss';
+import styles from './SampleComponent.module.scss';
 
-const SampleComponent: React.FC<SampleComponentProps> = ({ foo }) => (
-  <div data-testid="SampleComponent" className="foo-bar">
+export const SampleComponent = memo<SampleComponentProps>(({ foo }) => (
+  <div data-testid="SampleComponent" className={styles.container}>
     {foo}
-    asdf
   </div>
-);
+));
+
+SampleComponent.displayName = 'SampleComponent';
 
 export default SampleComponent;
