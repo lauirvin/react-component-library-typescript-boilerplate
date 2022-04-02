@@ -31,20 +31,16 @@ generatedTemplates.forEach((template) => {
 const componentIndexFile = exportComponentTemplate(componentName);
 fs.writeFileSync(`${componentDirectory}/index${componentIndexFile.extension}`, componentIndexFile.content);
 
-const componentList = fs.readdirSync('./src/components').filter((item) => !/(^|\/)\.[^\/\.]/g.test(item));
-const componentListTypes = componentList.map((component) => `${component}Props`);
-
-const exportList = [...componentList, componentListTypes];
+const componentList = fs
+  .readdirSync('./src/components')
+  .filter((item) => !/(^|\/)\.[^\/\.]/g.test(item))
+  .filter((item) => item !== 'index.ts');
 
 const exportComponents = `
-${componentList
-  .map((component) => `import { ${component}, ${component}Props } from './components/${component}';`)
-  .join('\n')}
-
-export {${exportList.join(', ')}}
+${componentList.map((component) => `export * from './${component}';`).join('\n')}
 `;
 
-fs.writeFile('./src/index.ts', exportComponents, (err) => {
+fs.writeFile('./src/components/index.ts', exportComponents, (err) => {
   if (err) {
     console.log(err);
   } else {

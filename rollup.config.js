@@ -5,6 +5,7 @@ import typescript from 'rollup-plugin-typescript2';
 import postcss from 'rollup-plugin-postcss';
 import copy from 'rollup-plugin-copy';
 import image from '@rollup/plugin-image';
+import { terser } from 'rollup-plugin-terser';
 import packageJson from './package.json';
 
 export default {
@@ -28,6 +29,7 @@ export default {
     image(),
     typescript({ useTsconfigDeclarationDir: true }),
     postcss(),
+    terser(),
     copy({
       targets: [
         {
