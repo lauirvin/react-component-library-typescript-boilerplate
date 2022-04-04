@@ -2,41 +2,32 @@ module.exports = {
   env: {
     es2021: true,
     browser: true,
-    es6: true,
+    es6: true
   },
-  extends: [
-    'airbnb',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
-  ],
+  extends: ["airbnb", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended", "plugin:storybook/recommended"],
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: true
     },
     ecmaVersion: 202,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   settings: {
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   },
   plugins: ['react', '@typescript-eslint', 'react-hooks'],
   rules: {
     'react/sort-comp': 0,
-    'react/jsx-filename-extension': [
-      1,
-      {
-        extensions: ['.jsx', '.tsx'],
-      },
-    ],
+    'react/jsx-filename-extension': [1, {
+      extensions: ['.jsx', '.tsx']
+    }],
     'react/no-unescaped-entities': 0,
     'react/require-default-props': 0,
     'react-hooks/exhaustive-deps': 0,
@@ -58,6 +49,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'no-nested-ternary': 0,
     'react/no-danger': 0,
-    'react/prop-types': 0,
-  },
+    'react/prop-types': 0
+  }
 };
